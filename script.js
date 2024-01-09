@@ -1,4 +1,4 @@
-'use strict';
+var fs = require('fs');
 /*
 --- Day 1: Trebuchet ? ! ---
 
@@ -25,41 +25,41 @@ In this example, the calibration values of these four lines are 12, 38, 15, and 
 Consider your entire calibration document.What is the sum of all of the calibration values ?
 */
 
-function getRandomArray(length) {
-    const randomString = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-    let randomArray = [];
-    let i;
-    for (i = length; i > 0; i--) {
-        let randomNum = Math.floor(Math.random() * 37);;
-        randomArray.push(randomString[randomNum]);
-    };
-    return randomArray;
+try {
+    let data = fs.readFileSync('file.txt', 'utf8')
+
+    let lines = data.split('\n')//.map(line => line.trim());
+
+    let sum = 0;
+
+    for(let i=0; i <= lines.length-1; i++){
+        const line = lines[i].trim()
+        let arr = lines[i].split('')
+        
+        let nums = [];
+
+        for(let h=0; h < arr.length-1; h++){
+            if (!isNaN(arr[h])){
+                nums.push(arr[h])
+            }
+        }
+        
+        let numChar = nums[0] + nums[nums.length-1]
+        console.log(parseInt(numChar))
+        sum = sum + parseInt(numChar);
+
+    }
+
+    console.log(sum)
+    
+} catch(e) {
+    console.log('Error:', e.stack);
 }
 
-function searchNumbers(array) {
-    let i = array.length;
-    let numberChain;
+//console.log(data)
+//console.log(typeof(data))
 
-    for (i; i >= 0; i--) {
-        if (isNaN(array[i])) {
-            numberChain
-        }
-
-    };
-};
-
-let test1 = getRandomArray(15);
-let test2 = getRandomArray(20);
-let test3 = getRandomArray(25);
-
-
-
-
-
-
-
-
-
-
-
-
+/*data.map((line, idx) => {
+        const lineArr = line.trim().split('')
+        console.log
+    })*/
